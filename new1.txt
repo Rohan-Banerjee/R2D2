@@ -1,0 +1,57 @@
+public class Utility {
+
+	
+	
+	public String getRandomNo() {
+		String random = ((Double)(Math.random()*100000)).toString();
+		GroupDao gd = new GroupDao();
+		
+		//gd.saveVerificationPassword (random.substring(0,random.indexOf("."));
+		return random.substring(0,random.indexOf("."));
+	}
+}
+
+
+
+
+
+	public String send(String groupEmailAddress, String randomNo) {
+		String mailSts = "0";
+		Properties prop = new Properties();
+		prop.put("mail.smtp.auth", true);
+		prop.put("mail.smtp.starttls.enable", true);
+		prop.put("mail.smtp.host", "smtp.gmail.com");
+		prop.put("mail.smtp.port", "587");
+		try {
+				Session ses = Session.getInstance(prop, new Authenticator() {
+					String password="l@vech@c@lates1509";
+					protected javax.mail.PasswordAuthentication  getPasswordAuthentication(){
+						//System.out.println(password.toString());
+						return new PasswordAuthentication("rohan.say7",password);
+						
+					}
+				});
+				
+				MimeMessage message = new MimeMessage(ses);
+				message.setFrom(new InternetAddress("rohan.say7@gmail.com"));
+				//message.addRecipient("Cc", "banerjee97sayan@gmail.com");
+				message.setRecipient(Message.RecipientType.TO, new InternetAddress(groupEmailAddress));
+				String subject = "PTMS Email Verification";
+				StringBuffer msg = new StringBuffer();
+				msg.append("Your registration is successful. Click on below link complete verification process \n");
+				msg.append(" Your verification password is :"+randomNo);
+				message.setSubject(subject);
+				
+				message.setContent(msg.toString() , "text/html");
+				
+				Transport.send(message);
+				mailSts ="1";
+				System.out.println("Mail Sent");
+				
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return mailSts;
+	}
