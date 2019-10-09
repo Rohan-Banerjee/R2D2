@@ -1,5 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Response>
-<Say voice="alice">Hello from Rohan</Say>
-<Play>http://demo.twilio.com/docs/classic.mp3</Play>
-</Response>
+curl -v -X POST https://api.line.me/v2/bot/message/broadcast \
+-H 'Content-Type:application/json' \
+-H 'Authorization: Bearer {channel access token}' \
+-d '{
+    "messages":[
+        {
+            "type":"text",
+            "text":"Hello, world1"
+        },
+        {
+            "type":"text",
+            "text":"Hello, world2"
+        }
+    ]
+}'
