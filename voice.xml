@@ -13,3 +13,5 @@ curl -v -X POST https://api.line.me/v2/bot/message/broadcast \
         }
     ]
 }'
+
+iFZaHeF0mwSAidOV8aigEmDYsiPVh6vHKjLGeb7BulNraQGzaFiXXAm6cz2VKqNB1+pG1Frh2WTINtNa49gzjK9wRdI7CtCPr7qFOTH+Wo1bwfplFsMPNh1Wg1n92r88fLEa5dBaM7OSrWitdjX6AgdB04t89/1O/w1cDnyilFU=
